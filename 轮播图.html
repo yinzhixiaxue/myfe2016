@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        ul,ol{
+            list-style: none;
+        }
+        a{
+            text-decoration : none;
+        }
+        #tab{
+            position: absolute;
+            right: 5px;
+            bottom: 5px;
+        }
+        #tab li , #arrows span{
+            width: 20px;
+            height: 20px;
+            background: #000;
+            color: #fff;
+            float: left;
+            line-height: 20px;
+            text-align: center;
+            margin-right: 5px;
+            cursor: pointer;
+        }
+        #arrows{
+            left: 5px;
+            bottom: 5px;
+            position: absolute;
+        }
+        #arrows span{
+            width: 20px;
+            height: 20px;
+            background: #000;
+            color: #fff;
+            float: left;
+        }
+        #tab .selected{
+            background: orange;
+        }
+        #content img{
+            display: none;
+        }
+        #content .selected{
+            display: block;
+        }
+        #container{
+            width: 520px;
+            height :280px;
+            margin: 100px auto;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <ul id="tab">
+            <li class="selected">1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </ul>
+        <div id="content">
+            <a href="" ><img class="selected"src="img/1.jpg" ></a>
+            <a href=""><img src="img/2.jpg" ></a>
+            <a href=""><img src="img/3.jpg" ></a>
+            <a href=""><img src="img/4.jpg" ></a>
+        </div>
+        <div id="arrows">
+            <span id="prev">&lt;</span>
+            <span id="next">&gt;</span>
+        </div>
+    </div>
+    <script>
+        var oContainer = document.getElementById("container");
+        var oTab = document.getElementById('tab');
+        var aLi =oTab.getElementsByTagName("li");
+        var oContent = document.getElementById("content");
+        var aImg = oContent.getElementsByTagName("img");
+        var oPrev = document.getElementById("prev");
+        var oNext = document.getElementById("next");
+        var iNow = 0;
+        for(var i=0;i<aLi.length;i++){
+            aLi[i].index = i;
+            aLi[i].onmouseover = function (){
+                iNow = this.index;
+                changeImg(this.index);
+            };
+        }
+        oNext.onclick = function(){
+            iNow = (iNow+1+aLi.length)%aLi.length;
+            changeImg(iNow);
+        };
+        oPrev.onclick = function(){
+            iNow = (iNow-1+aLi.length)%aLi.length;
+            changeImg(iNow);
+        };
+        function changeImg(elem){
+            for(var i=0;i<aLi.length;i++){
+                aLi[i].className = "";
+                aImg[i].className = "";
+            }
+            aLi[elem].className = "selected";
+            aImg[elem].className = "selected";
+        };
+        var timer = 0;
+        function run(){
+            timer = setInterval(function(){
+                oNext.onclick();
+            },2000);
+        }
+        run();
+        oContainer.onmouseover = function(){
+            clearInterval(timer);
+        };
+        oContainer.onmouseout = function(){
+            run();
+        }
+
+
+    </script>
+</body>
+</html>
