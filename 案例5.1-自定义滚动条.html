@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #container{
+            width: 300px;
+            height: 200px;
+            position: relative;
+            overflow: hidden;
+            background: #cccccc;
+        }
+        #content{
+            width: 280px;
+            position: absolute;
+        }
+        #scoll-bar{
+            width: 20px;
+            height: 200px;
+            background: #00ffff;
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+        #scoll-btn{
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #ff0000;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="content">
+            I love you!I love you!I love you!I love you!I love you!I love you!
+            I love you!I love you!I love you!I love you!I love you!I love you!
+            I love you!I love you!I love you!I love you!I love you!I love you!
+            I love you!I love you!I love you!I love you!I love you!I love you!
+            I love you!I love you!I love you!I love you!I love you!I love you!
+            I love you!I love you!I love you!I love you!I love you!I love you!
+            I love you!I love you!I love you!I love you!I love you!I love you!
+            I love you!I love you!I love you!I love you!I love you!I love you!
+            I love you!I love you!I love you!I love you!I love you!I love you!
+            I love you!I love you!I love you!I love you!I love you!I love you!
+            I love you!I love you!I love you!I love you!I love you!I love you!
+            I love you!I love you!I love you!I love you!I love you!I love you!
+            I love you!I love you!I love you!I love you!I love you!I love you!
+            I love you!I love you!I love you!I love you!I love you!I love you!
+            I love you!I love you!I love you!I love you!I love you!I love you!
+            I love you!I love you!I love you!I love you!I love you!I love you!
+        </div>
+        <div id="scoll-bar">
+            <span id="scoll-btn"></span>
+        </div>
+    </div>
+    <script>
+        var oContainer =document.getElementById("container");
+        var oContent = document.getElementById("content");
+        var oScollbtn = document.getElementById("scoll-btn");
+        oScollbtn.onmousedown = function(e){
+            e = e || window.event;
+           var iDisY = e.clientY - oContainer.offsetTop - oScollbtn.offsetTop;
+            document.onmousemove = function(e){
+                e = e || window.event;
+                var iTop = e.clientY -oContainer.offsetTop - iDisY;
+                if(iTop <= 0){
+                    iTop = 0;
+                }
+                if(iTop >= oContainer.offsetHeight - oScollbtn.offsetHeight){
+                    iTop = oContainer.offsetHeight - oScollbtn.offsetHeight;
+                }
+                oScollbtn.style.top = iTop + "px";
+                var fScale = iTop/(oContainer.offsetHeight - oScollbtn.offsetHeight)*(oContent.offsetHeight-oContainer.offsetHeight);
+                oContent.style.top = -fScale +"px";
+                return false;
+            };
+            document.onmouseup = function(){
+                document.onmousemove = null;
+                document.onmouseup = null;
+            };
+        };
+    </script>
+</body>
+</html>
