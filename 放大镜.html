@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        a{
+            text-decoration: none;
+        }
+        ul{
+            list-style: none;
+        }
+        #small-box{
+            height: 400px;
+            width: 400px;
+            float: left;
+            overflow: hidden;
+            position: relative;
+        }
+        #float{
+            width: 100px;
+            height: 100px;
+            filter :alpha(opacity=50);
+            opacity: 0.5;
+            background: #ccc;
+            position: absolute;
+            left: 0;
+            top: 0;
+            display: none;
+        }
+        #big-box{
+            height: 500px;
+            width: 500px;
+            overflow: hidden;
+            display: none;
+            position: relative;
+            left: 410px;
+            top : 0;
+        }
+        #big-pic{
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        #mask{
+            height: 400px;
+            width: 400px;
+            opacity: 0;
+            filter: alpha(opacity=0);
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="small-box">
+        <img id="small-pic" src="1.jpg" >
+        <div id="float"></div>
+        <div id="mask"></div>
+    </div>
+    <div id="big-box">
+        <img id="big-pic"src="2.jpg">
+    </div>
+    <script>
+        var oSmallbox = document.getElementById("small-box");
+        var oSmallpic = document.getElementById("small-pic");
+        var oFloat = document.getElementById("float");
+        var oBigbox = document.getElementById("big-box");
+        var oBigpic = document.getElementById("big-pic");
+        oSmallbox.onmouseover = function(){
+            oBigbox.style.display = "block";
+            oFloat.style.display = "block";
+        };
+        oSmallbox.onmousemove = function(e){
+            e = e||window.event;
+            var iLeft = e.clientX -oFloat.offsetWidth/2;
+            var iTop = e.clientY - oFloat.offsetHeight/2;
+            if(iLeft<=0){
+                iLeft = 0;
+            }
+            if(iLeft>=(oSmallbox.offsetWidth - oFloat.offsetWidth)){
+                iLeft = oSmallbox.offsetWidth - oFloat.offsetWidth;
+            }
+            if(iTop<=0){
+                iTop = 0;
+            }
+            if(iTop>=(oSmallbox.offsetHeight - oFloat.offsetHeight)){
+                iTop = oSmallbox.offsetHeight - oFloat.offsetHeight;
+            }
+            oFloat.style.left = iLeft + "px";
+            oFloat.style.top = iTop + "px";
+            var fScaleX = iLeft / (oSmallbox.offsetWidth - oFloat.offsetWidth);
+            var fScaleY = iTop / (oSmallbox.offsetHeight - oFloat.offsetHeight);
+            oBigpic.style.left = -fScaleX*(oBigpic.offsetWidth- oBigbox.offsetWidth)+"px";
+            oBigpic.style.top = -fScaleY*(oBigpic.offsetHeight- oBigbox.offsetHeight)+"px";
+            return false;
+        };
+        oSmallbox.onmouseout = function(){
+            oBigbox.style.display = "none";
+            oFloat.style.display = "none";
+        };
+    </script>
+</body>
+</html>
