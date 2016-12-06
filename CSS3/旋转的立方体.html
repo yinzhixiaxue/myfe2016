@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        body{
+            background: #000000;
+            perspective: 1000px;
+            /*perspective-origin: left top;*/
+        }
+        #container{
+            width: 200px;
+            height: 200px;
+            /*background: #00ffff;*/
+            margin: 200px auto;
+            position: relative;
+            transform-style:  preserve-3d;
+            -webkit-transform-style:  preserve-3d;
+            -moz-transform-style:  preserve-3d;
+            -ms-transform-style:  preserve-3d;
+            -o-transform-style:  preserve-3d;
+            /*border-radius: 10px;*/
+            /*border: solid #fff 2px;*/
+            animation: rotate 2s linear infinite;
+        }
+        @keyframes rotate{
+            /*from{*/
+
+            /*}*/
+            /*to{*/
+                /*transform:rotateY(-360deg);*/
+            /*}*/
+
+        100%{transform:rotateY(-360deg);}
+        }
+        .cube{
+            width: 200px;
+            height: 200px;
+            background: #ffffff;
+            opacity: 0.8;
+            filter: alpha(opacity = 80);
+            position: absolute;
+            line-height: 200px;
+            text-align: center;
+            font-size : 60px;
+            border-radius: 10px;
+            border: solid #fff 2px;
+        }
+        .one{
+            -webkit-transform: rotateY(180deg) translateZ(100px);
+            -moz-transform: rotateY(180deg) translateZ(100px);
+            -ms-transform: rotateY(180deg) translateZ(100px);
+            -o-transform: rotateY(180deg) translateZ(100px);
+            transform: rotateY(180deg) translateZ(100px);
+        }
+        .two{
+            -webkit-transform: rotateX(90deg) translateZ(100px);
+            -moz-transform: rotateX(90deg) translateZ(100px);
+            -ms-transform: rotateX(90deg) translateZ(100px);
+            -o-transform: rotateX(90deg) translateZ(100px);
+            transform: rotateX(90deg) translateZ(100px);
+        }
+        .three{
+            -webkit-transform: rotateY(-90deg) translateZ(100px);
+            -moz-transform: rotateY(-90deg) translateZ(100px);
+            -ms-transform: rotateY(-90deg) translateZ(100px);
+            -o-transform: rotateY(-90deg) translateZ(100px);
+            transform: rotateY(-90deg) translateZ(100px);
+        }
+        .four{
+            -webkit-transform: rotateY(90deg) translateZ(100px);
+            -moz-transform: rotateY(90deg) translateZ(100px);
+            -ms-transform: rotateY(90deg) translateZ(100px);
+            -o-transform: rotateY(90deg) translateZ(100px);
+            transform: rotateY(90deg) translateZ(100px);
+        }
+        .five{
+            -webkit-transform: rotateX(-90deg) translateZ(100px);
+            -moz-transform: rotateX(-90deg) translateZ(100px);
+            -ms-transform: rotateX(-90deg) translateZ(100px);
+            -o-transform: rotateX(-90deg) translateZ(100px);
+            transform: rotateX(-90deg) translateZ(100px);
+        }
+        .six{
+            -webkit-transform:  translateZ(100px);
+            -moz-transform:  translateZ(100px);
+            -ms-transform:  translateZ(100px);
+            -o-transform:  translateZ(100px);
+            transform:  translateZ(100px);
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div class ="cube one">1</div>
+        <div class ="cube two">2</div>
+        <div class ="cube three">3</div>
+        <div class ="cube four">4</div>
+        <div class ="cube five">5</div>
+        <div class ="cube six">6</div>
+    </div>
+</body>
+</html>
