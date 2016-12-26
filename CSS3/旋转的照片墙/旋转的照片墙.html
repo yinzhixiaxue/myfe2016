@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        html{
+            width: 100%;
+            height: 100%;
+        }
+        body{
+            width: 100%;
+            height: 100%;
+            background-image: url("img/bg.jpg");
+        }
+        #container .img{
+            width: 125px;
+            height: 125px;
+            border: 5px solid #fff;
+            box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+            position: absolute;
+            top: -500px;
+            left: -500px;
+            transition: all 1s ease-in-out;
+            cursor: pointer;
+        }
+        #container span{
+            width: 100%;
+            height: 100%;
+            display: block;
+            background-repeat: no-repeat;
+            transition : all 1s ease-in-out;
+        }
+        #next,#prev{
+            width: 60px;
+            height: 60px;
+            position: absolute;
+            top: 50%;
+            margin-top: -30px;
+            display: none;
+            opacity: 0.8;
+            background-color: #fff;
+            background-position :center;
+            background-repeat: no-repeat;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+        #prev{
+            left: -20px;
+            background-image: url(img/prev.png);
+        }
+        #next{
+            right: -20px;
+            background-image: url(img/next.png);
+        }
+    </style>
+</head>
+<body>
+    <div id="container"></div>
+        <span id="prev"></span>
+        <span id="next"></span>
+    <script>
+
+        (function(){
+            var oContainer = document.getElementById("container");
+            //col是列，row是行
+            var COL =6;
+            var ROW = 4;
+            var ThumbWidth = 125;
+            var ThumbHeight= 125;
+            var BigImgWidth = 750;
+            var BigImgHeight = 500;
+            var NUM = COL * ROW;
+            var count = 0;
+            for(var i=0;i<NUM;i++){
+                var oThumbImg = new Image();
+                oThumbImg.onload=function(){
+                    count++;
+                    if(count == NUM*2){
+                        LoadSuccess();
+                    }
+                };
+                oThumbImg.src = "img/thumbs/"+(i+1)+".jpg";
+                var oBigImg = new Image();
+                oBigImg.onload=function(){
+                    count++;
+                    if(count == NUM*2){
+                        LoadSuccess();
+                    }
+                };
+                oBigImg.src = "img/"+(i+1)+".jpg";
+            }
+            function LoadSuccess(){
+                var index = 0;
+                for(var i=0;i<ROW;i++){
+                    for(var j=0;j<COL;j++){
+                        index++;
+                        var oDiv = document.createElement('div');
+                        oDiv.className = "img";
+                        oDiv.pos={
+                            row: i,
+                            col: j
+                        };
+                        oDiv.innerHTML = "<span></span>";
+                        oDiv.style.backgroundImage = "url(img/thumbs/"+index+".jpg)";
+                        oDiv.index = index;
+                        oContainer.appendChild(oDiv);
+                    }
+                }
+                var aDiv = oContainer.getElementsByTagName("div");
+                var bodyWidth = document.body.clientWidth;
+                var bodyHeight = document.body.clientHeight;
+                var oDivWidth = aDiv[0].offsetWidth;
+                var oDivHeight = aDiv[0].offsetHeight;
+                var iColGap = (bodyWidth - oDivWidth*COL)/(COL+1);//列间距
+                var iRowGap = (bodyHeight - oDivHeight*ROW)/(ROW+1);//行间距
+                var timeCount = NUM;
+                var oNext = document.getElementById("next");
+                var oPrev = document.getElementById("prev");
+                var iNow = 0;
+                var timer = setInterval(function(){
+                    timeCount--;
+//                    console.log(aDiv[timeCount].style.left );
+//                    console.log(aDiv[timeCount].style.top );
+                    aDiv[timeCount].style.left  = aDiv[timeCount].pos.col * (iColGap+oDivWidth) + iColGap+"px";
+                    aDiv[timeCount].style.top  = aDiv[timeCount].pos.row* (iRowGap+oDivHeight) + iRowGap+"px";
+                    aDiv[timeCount].style.transform =  "rotate("+(Math.random()*40-20)+"deg)";
+                    if(timeCount==0){
+                        clearInterval(timer);
+                    }
+                },100);
+                var flag=false;//标志位，false表示要合并，true表示要散开
+                oContainer.onclick = function(e){
+                    clearInterval(timer);
+                    target= e.target||window.event.srcElement;
+                    if(target.className != 'img'){
+                        target = target.parentNode;
+                    }
+                    if(flag){//要散开
+                        for(var i=0;i<NUM;i++){
+                            aDiv[i].style.borderWidth = "5px";
+                            aDiv[i].style.left  = aDiv[i].pos.col * (iColGap+oDivWidth) + iColGap+"px";
+                            aDiv[i].style.top  = aDiv[i].pos.row* (iRowGap+oDivHeight) + iRowGap+"px";
+                            aDiv[i].style.transform =  "rotate("+(Math.random()*40-20)+"deg)";
+                            var oSpan = aDiv[i].getElementsByTagName("span")[0];
+                            oSpan.style.opacity = 0;
+                            oPrev.style.display = "none";
+                            oNext.style.display = "none";
+                            iNow = target.index;
+                        }
+
+                    }else{//要合并
+                        console.log(bodyWidth - BigImgWidth);
+                        for(var i=0;i<NUM;i++){
+                            aDiv[i].style.borderWidth = "1px";
+                            aDiv[i].style.transform = "rotate("+0+"deg)";
+                            aDiv[i].style.left = (bodyWidth - BigImgWidth)/2 + aDiv[i].pos.col*(ThumbWidth+2)+"px";
+                            aDiv[i].style.top = (bodyHeight - BigImgHeight)/2 + aDiv[i].pos.row*(ThumbHeight+2)+"px";
+                            var oSpan = aDiv[i].getElementsByTagName("span")[0];
+                            oSpan.style.backgroundImage = "url(img/"+ target.index +".jpg)";
+                            iNow = target.index;
+                            var x= -ThumbWidth*aDiv[i].pos.col;
+                            var y= -ThumbHeight*aDiv[i].pos.row;
+                            oSpan.style.backgroundPosition = x + "px " + y +"px";
+                            oSpan.style.opacity = 1;
+                            oPrev.style.display = "block";
+                            oNext.style.display = "block";
+                        }
+                    }
+                    flag = !flag;
+                };
+                oNext.onclick = oPrev.onclick = function(){
+                    if(this==oNext){
+                        iNow++;
+                        if(iNow == NUM+1){
+                            iNow = 1;
+                        }
+                    }else{
+                        iNow--;
+                        if(iNow == 0){
+                            iNow = NUM;
+                        }
+                    }
+                    var arr= [];
+                    for(var i=0;i<NUM;i++){
+                        arr.push(i);
+                    }
+                    arr.sort(function(){
+                       return Math.random()-0.5;
+                    });
+                    var timer2 = setInterval(function(){
+                        var item = arr.pop();
+                        var oSpan = aDiv[item].getElementsByTagName("span")[0];
+                        oSpan.style.backgroundImage = "url(img/"+ iNow +".jpg)";
+
+                        if(arr.length == 0){
+                            clearInterval(timer2);
+                        }
+                    },30);
+                };
+            }
+
+
+        })();
+    </script>
+</body>
+</html>
