@@ -11,6 +11,8 @@ define(['jquery'],function($){
             title: "i love you too",
             content: 456
         };
+
+
         this.container = $('<div class="dialog-container"></div>');
         this.mask = $('<div class="dialog-mask"></div>');
         this.box=$('<div class="dialog-box"></div>');
