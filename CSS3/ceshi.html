@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="utf-8" />
+    <title>animation_CSS参考手册_web前端开发参考手册系列</title>
+    <meta name="author" content="Joy Du(飘零雾雨), dooyoe@gmail.com, www.doyoe.com" />
+    <style>
+        body {
+            margin: 0;
+        }
+        #container{
+            position: relative;
+        }
+        #container div {
+            width:100px;
+            height:100px;
+            background:red;
+            position: absolute;
+        }
+        #red1 {
+            transform: rotate(45deg);
+        }
+        #red2 {
+            transform:  rotate(45deg) translate(100px, 100px) ;
+        }
+        #red3{
+            transform:  translate(100px, 100px) rotate(45deg);
+        }
+        #red4{
+            transform:  translate(100px, 100px);
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+    <div id="red1"></div>
+    <div id="red2"></div>
+    <div id="red3"></div>
+    <div id="red4"></div>
+</div>
+</body>
+</html>

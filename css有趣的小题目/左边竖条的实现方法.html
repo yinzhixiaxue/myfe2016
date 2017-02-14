@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        div{
+            position:relative;
+            width:200px;
+            height:60px;
+            background:#ddd;
+            text-align: center;
+        }
+        .border{
+            border-left:  5px solid deeppink;
+        }
+        .pesudo::after
+        {
+            content:"";
+            width: 5px;
+            height: 60px;
+            background: deeppink;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+    </style>
+</head>
+<body>
+
+<!-- 1、使用 border -->
+<div class="border">border实现</div>
+
+<!-- 2、使用伪元素 -->
+<div class="pesudo">伪元素实现</div>
+
+<!-- 3、外 box-shadow -->
+<div class="boxShadow">外 box-shadow 实现</div>
+
+<!-- 4、内 box-shadow -->
+<div class="insertBoxShadow">内 box-shadow 实现</div>
+
+<!-- 5、drop-shadow -->
+<div class="filterDropShadow">drop-shadow 实现</div>
+
+<!-- 6、渐变 -->
+<div class="linearGradient">线性渐变实现</div>
+
+<!-- 7、outline -->
+<div class="outline">outline实现</div>
+
+<!-- 8、滚动条 -->
+<div class="scroll"></div>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <script>
+        function text(n,m){
+            for(var i=n;i<=m;i++){
+                var num=i+"";
+                var newnum = num.split("").reverse().join("");
+                if(newnum == num){
+                    document.write(num+"<br>");
+                }
+            }
+        }
+        text(100,1000);
+    </script>
+</body>
+</html>
