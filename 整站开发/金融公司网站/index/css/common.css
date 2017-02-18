@@ -1,0 +1,171 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+ul,ol{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+}
+img{
+    border:0;
+}
+.warpper{
+    width: 1100px;
+    margin: 0 auto;
+}
+/*nav开始*/
+#nav .warpper{
+    position: relative;
+}
+#nav .warpper img{
+    margin: 10px 0 10px 10px;
+}
+#nav .warpper .tb{
+    float: right;
+    width: 70px;
+    height: 30px;
+    margin-top: 25px;
+}
+#nav .warpper .qq{
+    background: url("../img/home/top_qq.jpg") no-repeat 0 0;
+}
+#nav .warpper .wb{
+    background: url("../img/home/top_weib.jpg") no-repeat 0 0;
+}
+#nav .warpper .yx{
+    background: url("../img/home/top_you.jpg") no-repeat 0 0;
+}
+#nav .input{
+    position: absolute;
+    left: 520px;
+    top: 25px;
+}
+#nav .input .button{
+    width: 50px;
+    height: 30px;
+    margin-left: -10px;
+    background: #EA3939;
+    color: #FFF;
+    border: 2px;
+}
+#nav .input .text{
+    width: 212px;
+    height: 26px;
+    border: solid 1px #EA3939;
+}
+/*nav结束*/
+
+
+/*banner开始*/
+#banner{
+    width:100%;
+    height: 440px;
+}
+#banner .banner-head{
+    width:100%;
+    height: 50px;
+    background: #EB3939;
+}
+#banner .box{
+    width: 1100px;
+    height: 50px;
+}
+#banner .box .sub-box{
+    width: 135px;
+    height: 50px;
+    line-height: 50px;
+    float: left;
+    text-align: center;
+    color: #fff;
+}
+#banner .box .selected{
+    background: #A61C00;
+}
+#banner .banner-img{
+    width: 100%;
+    height: 390px;
+    background: url("../img/home/answer.jpg") no-repeat 0 0;
+}
+/*banner结束*/
+
+/*footer开始*/
+#footer{
+    width: 100%;
+    height: 180px;
+    background: #666666;
+    margin: 2px 0;
+}
+#footer .warpper{
+    height: 180px;
+    position: relative;
+    /*overflow: hidden;*/
+}
+#footer .advert{
+    width: 20px;
+    padding: 5px 10px 5px 10px;
+    height: 150px;
+    color: #fff;
+    background: #ff0000;
+    position: absolute;
+    font-size: 20px;
+    line-height: 25px;
+    top: -10px;
+    left: 0;
+}
+#footer p{
+    width: 500px;
+    height: 25px;
+    /*margin-top: 25px;*/
+    position: absolute;
+    color: #fff;
+}
+#footer .advert-one{
+    left: 100px;
+    top: 25px;
+}
+#footer .advert-two{
+    left: 100px;
+    top: 75px;
+}
+#ewm{
+    position: absolute;
+    left: 700px;
+    top: 25px;
+}
+#footer .ewm-information{
+    position: absolute;
+    left: 820px;
+    top: 50px;
+    color: #fff;
+}
+#footer ul{
+    width: 214px;
+    height: 35px;
+    position: absolute;
+    left: 820px;
+    top: 80px;
+
+}
+#footer ul li{
+    float: left;
+    margin-right: 30px;
+}
+#footer .end{
+    width: 100%;
+    position: absolute;
+    bottom: 10px;
+    color: #fff;
+    text-align: center;
+}
+/*footer结束*/
+
+#last{
+    width: 100%;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+}
+
+
