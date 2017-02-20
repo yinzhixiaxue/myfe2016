@@ -1,0 +1,24 @@
+body{
+    padding-top: 70px;
+}
+.navbar-inverse input[type="text"]{
+    background: #313131;
+    border: none;
+    color: #999;
+}
+.navbar-form{
+    position: relative;
+}
+.navbar-inverse button[type='submit']{
+    position: absolute;
+    top: 15%;
+    right: 20px;
+    background: none;
+    border: none;
+}
+.glyphicon{
+    color: #999;
+}
+.container .profile{
+    margin-right: 25px;
+}
